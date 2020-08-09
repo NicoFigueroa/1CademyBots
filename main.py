@@ -23,6 +23,8 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 	pagesToPropose at the end contains the list of pages that should be submitted as proposals to 1Cademy
 '''
 
+
+
 #TODO 
 #
 # This function should loop through the list of pages from GetPagesFromCategory and 
@@ -42,7 +44,28 @@ def GetPotentialPages():
 #
 # 3. If the article is acceptable put it into our list of potential pages
 # 
-# 4. Loop through each page in the list of potential pages and check it against our nodes.csv 
-#  
+# 4. Loop through each page in the list of potential pages and see if its prerequisite node exists in 1cademy nodes
+# 
+# 5. If the prerequisite node exists, then we can propose the created node
+# 
+# 6. For each proposed node, check references from that wiki article to see if they already exist in 1Cademy.
+#    If that reference does not exist, propose it
+# 
+# 7. After submitting the proposal, wait 5 seconds to check back and check back with 1cademy to see if the node is accepted or not
+# 
+# 8. If the concept node does exist, this node will only have on prerequisite link, so now we have to submit improvement proposals
+# for each prerequisite existing in that wikipedia article that exist in 1cademy already
+# 
+#   
+# 
+#    
+#TODO information for proposing nodes, references to 1Cademy
+#     
+#  id of prereq node
+# Wiki as title of node
+# summary as content of node
+# list of citations existing on 1cademy
+# list of tags that exist as nodes on 1cademy
+# if that article has a header image, submit that link in the proposal
 def start():
 	pass

@@ -1,11 +1,12 @@
 # 1CademyBots
 
 # Setting up the environment
-The first step is to fork this repo into your own and then 
-pull it to your local computer 
+I think that a better solution to distributing work is to have people clone the following repo:
 
 ```
-git clone https://github.com/yourname/1CademyBots
+git clone https://github.com/NicoFigueroa/1CademyBots.git
+git remote add origin https://github.com/NicoFigueroa/1CademyBots
+git branch --set-upstream-to=origin/master
 ```
 
 Create a python virtual environment in the same folder that git created called 1CademyBots
@@ -43,8 +44,8 @@ tasks and all bug fixes and issues will be tracked through github.
 If you are not part of the team please email nfigue@umich.edu for an invite 
 
 # Creating Pull Requests
-Please make commits to your fork of the repo frequently and comment your code to some degree
-so that other people working can follow your line of thinking. Please only commit to your repo and then
-submit pull requests to the main repo to be approved by the project manager
+This used to say make your own fork and make pull requests from that repo to here but I think it would be easier
+to just clone this repo locally and make pull requests that way. Please comment your code and give your commits an
+intuitive name so it is easy to tell exactly what the code is for.
 
 If you have any questions please post in the Python Programming Team channel

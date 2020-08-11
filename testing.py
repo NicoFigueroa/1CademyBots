@@ -3,7 +3,7 @@ Please implement a module that iterates through each of the "Pages" in this arti
 Note that you need to click the nextPage button programmatically to go through multiple pages.
 
 Author: Sohan Suhas Patil
-Date: 8/8/2020
+Completed Date: 8/8/2020
 '''
 
 from selenium import webdriver

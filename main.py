@@ -24,7 +24,7 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 '''
 
 #Google cloud entry point
-def cloud_start():
+def cloud_start(request):
 	return WikiArticleHelper.GetPagesFromCategory("Epidemiology")
 #TODO 
 #

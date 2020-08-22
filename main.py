@@ -25,7 +25,7 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 
 #Google cloud entry point
 def cloud_start(request):
-	print(request)
+	print(str(request.json()))
 	return "Hello"
 	articles = WikiArticleHelper.GetPagesFromCategory("Epidemiology")
 	if len(articles) > 0:

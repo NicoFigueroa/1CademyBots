@@ -29,7 +29,7 @@ def cloud_start(request):
 	return "Hello"
 	articles = WikiArticleHelper.GetPagesFromCategory("Epidemiology")
 	if len(articles) > 0:
-		return str(articles[0])
+		return str(json.dumps(articles))
 	else:
 		return "None"
 #TODO 

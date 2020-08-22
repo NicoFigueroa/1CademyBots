@@ -23,7 +23,9 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 	pagesToPropose at the end contains the list of pages that should be submitted as proposals to 1Cademy
 '''
 
-
+#Google cloud entry point
+def cloud_start():
+	pass
 
 #TODO 
 #

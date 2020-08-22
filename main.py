@@ -1,6 +1,6 @@
 import WikiArticleHelper
 import MicrosoftResearchApi
-
+import json
 '''
 
 THIS IS DIRECTLY FROM THE NOTES IN THE TEAMS CHAT 
@@ -25,7 +25,8 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 
 #Google cloud entry point
 def cloud_start(request):
-	return WikiArticleHelper.GetPagesFromCategory("Epidemiology")
+	articles = WikiArticleHelper.GetPagesFromCategory("Epidemiology")
+	return "Hello from start"
 #TODO 
 #
 # This function should loop through the list of pages from GetPagesFromCategory and 

@@ -25,11 +25,8 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 
 #Google cloud entry point
 def cloud_start(request):
-	articles = WikiArticleHelper.GetPagesFromCategory("Epidemiology")
-	if len(articles) > 0:
-		return str(json.dumps(articles))
-	else:
-		return "None"
+	start()
+	return "Complete"
 #TODO 
 #
 # This function should loop through the list of pages from GetPagesFromCategory and 
@@ -73,4 +70,5 @@ def GetPotentialPages():
 # list of tags that exist as nodes on 1cademy
 # if that article has a header image, submit that link in the proposal
 def start():
-	pass
+	articles = WikiArticleHelper.GetPagesFromCategory("Epidemiology")
+	for article in articles:

@@ -154,21 +154,19 @@ def getEntity(expression, count='1', attributes='Ti'):
 
 if __name__ == "__main__":
     count = 3
-else:
-    count = 50
 
-query = input('What do you want to search?\n')
-CACHE_DICT = open_cache(CACHE_FILE)
-expression = getExpression(query)
+    query = input('What do you want to search?\n')
+    CACHE_DICT = open_cache(CACHE_FILE)
+    expression = getExpression(query)
 
-getEntity(
-        expression, count=count, attributes='Id,Ti,AA.DAuN,IA,F.FN,VFN,DOI,Pt')
+    getEntity(
+            expression, count=count, attributes='Id,Ti,AA.DAuN,IA,F.FN,VFN,DOI,Pt')
 
-# print('Title: ', title)
-# print("Authors: ", authors)
-# print('Key Words: ', key_words)
-# print('Abstract: ', abstract)
-# # print('Publisher: ', publisher)
-# print('Journal Venue: ', venue)
-# print('DOI: ', doi)
-# print('Paper ID: ', )
+    # print('Title: ', title)
+    # print("Authors: ", authors)
+    # print('Key Words: ', key_words)
+    # print('Abstract: ', abstract)
+    # # print('Publisher: ', publisher)
+    # print('Journal Venue: ', venue)
+    # print('DOI: ', doi)
+    # print('Paper ID: ', )

@@ -1,2 +1,2 @@
 
-API_KEY="bf36bdfbfff24a67b029ba8201b050a3"
+API_KEY=""

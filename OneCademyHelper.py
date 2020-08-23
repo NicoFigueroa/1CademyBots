@@ -32,3 +32,4 @@ def propose_reference():
 def get_references():
     pass
 
+init_database()

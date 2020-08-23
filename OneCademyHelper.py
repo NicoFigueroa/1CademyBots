@@ -7,8 +7,14 @@ from google.cloud import firebase
 #  
 #
 #
+
+def init_database():
+    global db
+    if not db:
+        db = firebase.Client()
+
 def get_nodes():
-    pass
+    return db.collection(u'nodes').get()
 
 def propose_node():
     pass

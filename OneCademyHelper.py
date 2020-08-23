@@ -1,3 +1,5 @@
+from google.cloud import firebase
+
 #TODO Wrapper for 1cademy web api, need to wait for Iman to write backend code
 # to be able to write this
 #
@@ -16,3 +18,4 @@ def propose_reference():
 
 def get_references():
     pass
+

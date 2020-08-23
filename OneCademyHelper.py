@@ -15,7 +15,10 @@ def init_database():
         db = firestore.Client()
 
 def get_nodes():
-    return db.collection(u'nodes')
+    nodes = db.collection(u'nodes')
+    print(nodes)
+    print(dir(nodes))
+    return nodes
 
 def propose_node():
     pass

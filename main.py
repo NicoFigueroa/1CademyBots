@@ -81,5 +81,5 @@ def GetPotentialPages(category):
 # if that article has a header image, submit that link in the proposal
 def start():
 	#potential_pages = GetPotentialPages("Epidemiology")
-	print(OneCademy)
+	print(OneCademyHelper.get_nodes())
 

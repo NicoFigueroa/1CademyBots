@@ -13,6 +13,7 @@ def init_database():
     global db
     if not db:
         db = firestore.Client()
+        print("db", db)
 
 def get_nodes():
     nodes = db.collection(u'nodes')

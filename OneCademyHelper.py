@@ -7,6 +7,7 @@ from google.cloud import firestore
 #  
 #
 #
+db = None
 
 def init_database():
     global db

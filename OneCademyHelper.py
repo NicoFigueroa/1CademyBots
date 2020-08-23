@@ -15,7 +15,13 @@ def init_database():
         db = firebase.Client()
 
 def get_nodes():
-    return db.collection(u'nodes').get()
+    try:
+        print(db)
+        print(dir(db))
+        print(db.collection(u'nodes'))
+    except:
+        pass
+    return None
 
 def propose_node():
     pass

@@ -1,6 +1,7 @@
 import WikiArticleHelper
 import MicrosoftResearchApi
 import json
+import WikipediaScrapingLibrary
 
 '''
 
@@ -26,8 +27,8 @@ if there is at least one prerequisite that exists in pagesToPropose or there exi
 
 #Google cloud entry point
 def cloud_start(request):
-	articles = WikiArticleHelper.GetPagesFromCategory("Epidemiology")
-	return json.dumps(articles)
+	start()
+	return "Complete"
 #TODO 
 #
 # This function should loop through the list of pages from GetPagesFromCategory and 
@@ -35,8 +36,15 @@ def cloud_start(request):
 # 
 # return a dictionary where the key is the Article Title i.e. http://en.wikipedia.org/wiki/[Article Title] and the value is a list of pre-requisites 
 # retrieved using WikiArticleHelper.GetPrerequisitesFromArticle
-def GetPotentialPages():
-	pass
+def GetPotentialPages(category):
+	potential_pages = []
+
+	articles = WikiArticleHelper.GetPagesFromCategory(category)
+	for article in articles:
+		if WikipediaScrapingLibrary.IsWikipageAppropriate(article, "http://en.wikipedia.com/wiki/" + article):
+			potential_pages.append(article)
+
+	return potential_pages
 
 #TODO This is the main structure of our bot
 # 
@@ -71,4 +79,5 @@ def GetPotentialPages():
 # list of tags that exist as nodes on 1cademy
 # if that article has a header image, submit that link in the proposal
 def start():
-	pass
+	potential_pages = GetPotentialPages("Epidemiology")
+

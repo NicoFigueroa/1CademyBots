@@ -12,10 +12,10 @@ db = None
 def init_database():
     global db
     if not db:
-        db = firebase.Client()
+        db = firestore.Client()
 
 def get_nodes():
-    return db.collection(u'nodes').get()
+    return db.collection(u'nodes')
 
 def propose_node():
     pass
@@ -26,3 +26,4 @@ def propose_reference():
 def get_references():
     pass
 
+init_database()

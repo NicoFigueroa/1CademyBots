@@ -6,7 +6,7 @@ def similar(text1,text2):
     return(model.wv.similarity(text1,text2))
     
 def vectorizeinput(text):
-    df = pd.read_csv('/Users/s0p01cs/Downloads/Test.csv')
+    df = pd.read_csv('TestNodes.csv')
     df.head()
     #df['Title_Content'] = df['Title'] + " " + df['Content']
     df2 = df.apply(lambda x: ','.join(x.astype(str)), axis=1)

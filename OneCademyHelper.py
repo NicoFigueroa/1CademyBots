@@ -1,3 +1,5 @@
+from google.cloud import firestore
+
 #TODO Wrapper for 1cademy web api, need to wait for Iman to write backend code
 # to be able to write this
 #
@@ -5,8 +7,19 @@
 #  
 #
 #
+db = None
+
+def init_database():
+    global db
+    if not db:
+        db = firestore.Client()
+        print("db", db)
+
 def get_nodes():
-    pass
+    nodes = db.collection(u'nodes')
+    print(nodes)
+    print(dir(nodes))
+    return nodes
 
 def propose_node():
     pass
@@ -16,3 +29,5 @@ def propose_reference():
 
 def get_references():
     pass
+
+init_database()

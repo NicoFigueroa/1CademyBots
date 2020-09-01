@@ -3,6 +3,7 @@ import MicrosoftResearchApi
 import json
 import WikipediaScrapingLibrary
 import OneCademyHelper
+import ContentHelper
 
 '''
 
@@ -80,6 +81,16 @@ def GetPotentialPages(category):
 # list of tags that exist as nodes on 1cademy
 # if that article has a header image, submit that link in the proposal
 def start():
-	#potential_pages = GetPotentialPages("Epidemiology")
-	print(OneCademyHelper.get_nodes())
+	potential_pages = GetPotentialPages("Epidemiology")
+	print(potential_pages)
+	for page in potential_pages:
+		url = "http://en.wikipedia.org/wiki/" + page
+		print(url)
+		summary_paragraphs = WikiArticleHelper.getSummaryParagraphs(WikipediaScrapingLibrary.soupStructure(url))
+		print(summary_paragraphs)
+		print(ContentHelper.sanitize())
+		break
 
+
+if __name__ == '__main__':
+	cloud_start(None)

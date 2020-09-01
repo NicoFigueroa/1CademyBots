@@ -17,10 +17,9 @@ def init_database():
 
 def get_nodes():
     nodes = db.collection(u'nodes')
-    print(nodes)
-    print(dir(nodes))
-    return nodes
 
+
+    return [i.to_dict() for i in nodes.stream()]
 def propose_node():
     pass
 
@@ -31,3 +30,6 @@ def get_references():
     pass
 
 init_database()
+
+if __name__ == '__main__':
+    print(get_nodes())

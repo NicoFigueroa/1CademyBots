@@ -2,7 +2,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import gensim
 import word2vec
-
+from gensim.models.doc2vec import TaggedDocument
 #TODO module to vectorize and compare content between 1cademy nodes and wikipedia articles 
 # to determine if the node already exists in 1cademy
 # 
@@ -19,12 +19,16 @@ import word2vec
 def sanitize(text):
   stop_words = set(stopwords.words('english'))
   word_tokens = word_tokenize(text)
-  filtered_sentence = [w for w in word_tokens if not w in stop_words]
+  filtered_sentence = [w.lower() for w in word_tokens if not w in stop_words]
   
   return filtered_sentence
 
-def compare_vectors():
-    pass
+def get_unique_identifier_for_node(node):
+    return node.to_dict()['wiki']
 
-def vectorize():
-    pass
+def labeled_sentance_for_node(node):
+    node = node.to_dict()
+    
+    document = TaggedDocument(words=node['content'].split(), tags=[node['wiki']])
+
+    return document

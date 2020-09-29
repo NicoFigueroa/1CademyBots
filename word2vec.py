@@ -1,21 +1,40 @@
 import pandas as pd
-from gensim.models import Word2Vec
+from gensim.models import Word2Vec, Doc2Vec
+
+import OneCademyHelper
+
+
+#TODO Implement vector comparrison between two paragraphs, 
+#Doc2Vec may be the solution here
+def compare_nodes(wiki_summary, node):
+    return False
+
+
+#TODO implement comparrison of references somehow,
+#probably not with vectors but we need to come up with a 
+#comparrison method
+#
+#Maybe something like title similarity and author overlap? 
+def compare_references(wikiReference, existingReference):
+    return False
 
 def similar(text1,text2):
-    model = vectorizeinput(text1)
     return(model.wv.similarity(text1,text2))
-    
-def vectorizeinput(text):
-    df = pd.read_csv('TestNodes.csv')
-    df.head()
-    #df['Title_Content'] = df['Title'] + " " + df['Content']
-    df2 = df.apply(lambda x: ','.join(x.astype(str)), axis=1)
-    df_clean = pd.DataFrame({'clean': df2})
-    sent = [row.split(',') for row in df_clean['clean']]
-    model = Word2Vec(sent, min_count=1,size= 50,workers=3, window =3, sg = 1)
-    print(model.wv.most_similar(text)[0])
-    return model
 
-text = 'Computer Science'
-#print (vectorizeinput(text))
-#print (similar('Inductive Reasoning','Computer Science'))
+def vectorizeinput(nodes):
+    model = Word2Vec()
+
+if __name__ == '__main__':
+    model = Doc2Vec(alpha=0.025, min_alpha=0.025)
+    model.build_vocab(OneCademyHelper.node_generator())
+    
+    for epoch in range(5):
+        model.train(OneCademyHelper.node_generator(), total_examples=model.corpus_count, epochs=model.epochs)
+        print(epoch)
+
+    model.save('C:\\Users\\figue\\Documents\model.doc2vec')
+    print(model.wv.similar_by_word("inteligent"))
+    
+
+    #print (vectorizeinput(text))
+    #print (similar('Inductive Reasoning','Computer Science'))

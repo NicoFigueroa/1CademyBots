@@ -81,16 +81,53 @@ def GetPotentialPages(category):
 # list of tags that exist as nodes on 1cademy
 # if that article has a header image, submit that link in the proposal
 def start():
+
+	#TODO Remove after testing
+	#Temporarily removed for testing
 	potential_pages = GetPotentialPages("Epidemiology")
-	print(potential_pages)
+	potential_pages = ['Epidemiology']
+
 	for page in potential_pages:
 		url = "http://en.wikipedia.org/wiki/" + page
-		print(url)
-		summary_paragraphs = WikiArticleHelper.getSummaryParagraphs(WikipediaScrapingLibrary.soupStructure(url))
-		print(summary_paragraphs)
-		print(ContentHelper.sanitize())
-		break
+		
+		#List of words, after removing all "low quality words" i.e. a, the, is, an
+		#in an effort to only compare the real substance of nodes
+		articleSoup = WikipediaScrapingLibrary.soupStructure(url)
+		comparrison_summary = WikiArticleHelper.getSummary(articleSoup, clean=True, word_limit=100)
+
+		if doesNodeExist(comparrison_summary):
+			continue
+
+		#If we get to here, no match was found for this wiki page 
+		#so propose it into 1cademy
+		OneCademyHelper.propose_node(WikiArticleHelper.getProposeSummary(articleSoup))
+
+		#Another thing we must do if we find a node that is missing from 1cademy, is
+		#check the references in the article to ensure that they exist as reference nodes 
+		references = WikiArticleHelper.GetReferenceDataFromArticle("https://en.wikipedia.org/" + page)
+
+		for reference in references:
+			if not doesReferenceExist(reference):
+				OneCademyHelper.propose_reference(reference)
 
 
+#Returns True if a match exists,
+#False if there is no matching node in 1cademy
+def doesNodeExist(wikiSummary):
+	for node in OneCademyHelper.node_generator():
+			if word2vec.compare_nodes(wikiSummary, node):
+				return True
+
+	return False
+
+def doesReferenceExist(reference):
+	#TODO implement
+	for reference in OneCademyHelper.reference_generator():
+		if word2vec.compare_reference():
+			return True
+
+	return False
+
+		
 if __name__ == '__main__':
 	cloud_start(None)

@@ -4,12 +4,47 @@ import unittest
 import re
 import requests
 
+import ContentHelper
+
 #TODO implement caching one article for successive calls to 
 #getReferenceData and getPrerequisiteData
 #
 cache_url = None
 cache = None
 
+#Returns a list of words, stripped of everything except letters,
+#all lowercase and 
+#intended to be used for comparrison inside of Doc2Vec
+def getCleanSummary(articleSoup, word_limit):
+    initial_summary = getProposeSummary(articleSoup, word_limit)
+
+    #Dont need to worry about making lowercase here, sanitize() does that for us
+    clean_summary = "".join([letter if letter == " " or letter.isalpha() else "" for letter in initial_summary])
+
+    return ContentHelper.sanitize(clean_summary)
+
+#Returns a summary, word limited but
+def getProposeSummary(articleSoup, word_limit):
+    summary = ""
+    for p in getSummaryParagraphs(articleSoup):
+        summary += p.text + " "
+    words = summary.split(" ")
+    final_summary = ""
+    for index, word in enumerate(words):
+        final_summary += word + " "
+        if "." in word and index > word_limit:
+            break
+    return final_summary
+        #print(ContentHelper.sanitize(p))
+
+
+#Word limit is a soft limit, the summary will terminate at the period following the {word_limit} word
+#Abstraction for summary types
+def getSummary(articleSoup, clean=True, word_limit=50):
+    if clean:
+        return getCleanSummary(articleSoup, word_limit=word_limit)
+
+    return getProposeSummary(articleSoup, word_limit=word_limit)
 #Returns a list of summary paragraphs as bs4 tags 
 #
 #accepts: bs4 object for the article
@@ -153,9 +188,6 @@ def GetPagesFromCategory(category, recursive=False, max_depth=1, current_depth=0
                 GetPagesFromCategory(category, recursive=recursive, max_depth=max_depth, current_depth=current_depth+1, pages=pages, blacklist=blacklist)
 
     return pages
-
-    
-
 
 #This is just to test this module on a variety of wiki articles to ensure that 
 #it works in 99% of cases
